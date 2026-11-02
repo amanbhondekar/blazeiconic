@@ -343,7 +343,8 @@ a.hx-gcard:hover .hx-gname { color: var(--red); }
 .hx-form-group > .hx-label { opacity: .65; }
 .js #enquiryForm [data-type], .js #enquiryForm [data-rest] { display: none; }
 .js #enquiryForm [data-type].on, .js #enquiryForm [data-rest].on { display: grid; }
-.hx-field input[type="file"] { padding: var(--sp-2) 0; }
+.hx-field input[type="file"] { width: 100%; max-width: 100%; min-width: 0; padding: var(--sp-2) 0; }
+.hx-field input[type="file"]::file-selector-button { margin-right: var(--sp-2); }
 
 @media (max-width: 1023px) {
   .hx-grid--4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -360,6 +361,15 @@ a.hx-gcard:hover .hx-gname { color: var(--red); }
   .hx-spec > div { grid-template-columns: 1fr; gap: var(--sp-1); }
   .hx-panel--wide { aspect-ratio: 4 / 3; }
   .hx-subnav { gap: var(--sp-1) var(--sp-3); }
+}
+
+/* Short screens (laptops with toolbars, phones on their side): keep the 100vh hero whole */
+@media (max-height: 560px) {
+  .hx-hero-inner { padding-block: var(--sp-4); }
+  .hx-hero-meta { display: none; }
+  .hx-h1 { font-size: clamp(var(--t15), min(9vw, 18svh), var(--t3)); }
+  .hx-rule, .hx-hero-foot { margin-top: var(--sp-2); }
+  .hx-tagline { font-size: var(--t0); line-height: 1.3; }
 }
 
 @media (prefers-reduced-motion: reduce) {
