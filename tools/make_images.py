@@ -34,6 +34,8 @@ GRADES = {
     "paper": [(0.00, mix(PAPER, INK, .5)), (0.50, mix(PAPER, INK, .1)), (1.00, PAPER)],
     # Light theme: soft Paper for hero and band grounds (text sits on them), and a red-free graphite
     "soft":     [(0.00, mix(PAPER, INK, .30)), (0.50, mix(PAPER, INK, .08)), (1.00, PAPER)],
+    # Dark theme: deep Ink silk for heroes and the band (Paper type sits on them), red-free
+    "deep":     [(0.00, INK), (0.55, mix(INK, PAPER, .13)), (1.00, mix(INK, PAPER, .36))],
     "graphite": [(0.00, INK), (0.55, mix(INK, PAPER, .22)), (1.00, mix(INK, PAPER, .62))],
 }
 
@@ -107,14 +109,14 @@ def render(name, w, h, seed, treatment, dark_edges=0.35, quality=80):
 # Light theme: Paper-soft grounds for heroes and band (Ink type sits on them),
 # Paper and red-free graphite for content imagery. No wine or red in the pictures:
 # Blaze Red is reserved for the accent and for hover states.
-SOFT = dict(dark_edges=0.12)
+SOFT = dict(dark_edges=0.30)
 
 # Heroes and band (wide)
-render("hero-a", 2400, 1500, 11, "soft", **SOFT)
-render("hero-b", 2000, 1250, 22, "soft", **SOFT)
-render("hero-c", 2000, 1250, 33, "soft", **SOFT)
-render("hero-d", 2000, 1250, 44, "soft", **SOFT)
-render("band", 2400, 1350, 55, "soft", **SOFT)
+render("hero-a", 2400, 1500, 11, "deep", **SOFT)
+render("hero-b", 2000, 1250, 22, "deep", **SOFT)
+render("hero-c", 2000, 1250, 33, "deep", **SOFT)
+render("hero-d", 2000, 1250, 44, "deep", **SOFT)
+render("band", 2400, 1350, 55, "deep", **SOFT)
 
 # Package previews (5:4)
 for i, (seed, tone) in enumerate([(61, "paper"), (62, "graphite"), (63, "paper"), (64, "graphite"), (65, "paper")], 1):

@@ -89,7 +89,7 @@ def header_html(current: str) -> str:
     links.append('<a class="btn" href="/enquire/">Enquire</a>')
     return f"""<header class="site-header">
   <div class="hd-inner">
-    <a class="hd-word" href="/" aria-label="Blaze Iconic, home"><img src="/assets/logo/wordmark-landscape-ink.svg" alt="Blaze Iconic" width="162" height="20"></a>
+    <a class="hd-word" href="/" aria-label="Blaze Iconic, home"><img src="/assets/logo/wordmark-landscape-paper.svg" alt="Blaze Iconic" width="162" height="20"></a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span></button>
     <nav class="nav" id="site-nav" aria-label="Primary">
       {chr(10).join('      ' + l for l in links).strip()}
@@ -120,7 +120,7 @@ def footer_html(legal: bool) -> str:
       {universe}
     </nav>
   </div>
-  <a class="ft-wordmark" href="/" aria-label="Blaze Iconic, home"><img src="/assets/logo/wordmark-landscape-ink.svg" alt="Blaze Iconic" width="527" height="65" loading="lazy"></a>
+  <a class="ft-wordmark" href="/" aria-label="Blaze Iconic, home"><img src="/assets/logo/wordmark-landscape-paper.svg" alt="Blaze Iconic" width="527" height="65" loading="lazy"></a>
   <div class="ft-base">
     {colophon}
     <span>{ADDRESS}</span>
