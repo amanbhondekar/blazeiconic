@@ -11,8 +11,7 @@ then the page body. Keys:
     job, action, needs   shown in the build-notes strip; delete with the strip
     legal: yes           adds the colophon to the footer (legal pages only)
     css, js              extra stylesheet / script for one page (Home uses /home.js)
-    h1, eyebrow, lede, cta
-                         builds the page hero (cta is "Label | /href")
+    h1, eyebrow, lede    builds the page hero (title, small label, one line)
     {{> name}} in a body includes src/partials/name.html
 
     section: key        adds the section sub-navigation under the hero (see SUBNAV)
@@ -114,13 +113,6 @@ def footer_html(legal: bool) -> str:
     universe = col("The Blaze Universe", "/#universe", [(f"{u['name']}", f"/{u['slug']}/") for u in content.UNIVERSE])
     return f"""<footer class="site-footer">
   <div class="ft-main">
-    <div class="ft-lead">
-      <h2 class="ft-title">Work with Blaze Iconic.</h2>
-      <div class="ft-actions">
-        <a class="hx-btn hx-btn--red" href="/enquire/">Enquire <span class="arrow">&rarr;</span></a>
-        <a class="hx-btn" href="/get-scouted/">Get Scouted <span class="arrow">&nearr;</span></a>
-      </div>
-    </div>
     <nav class="ft-cols" aria-label="Footer">
       {journal}
       {about}
@@ -165,10 +157,6 @@ def hero_html(meta: dict) -> str:
     """Page hero: the Home hero, shorter, with the page name as the giant title."""
     if not meta.get("h1"):
         return ""
-    cta = ""
-    if meta.get("cta"):
-        label, _, href = meta["cta"].partition("|")
-        cta = f'<a class="hx-btn hx-btn--red" href="{html.escape(href.strip())}">{html.escape(label.strip())} <span class="arrow">&rarr;</span></a>'
     img = meta.get("hero_image") or HERO_IMAGES[zlib.crc32(meta["path"].encode()) % len(HERO_IMAGES)]
     return f"""<section class="hx-hero hx-hero--page">
   <img class="hx-hero-bg" src="/assets/img/{img}.jpg" alt="" width="2000" height="1250" fetchpriority="high">
@@ -183,12 +171,7 @@ def hero_html(meta: dict) -> str:
       <div class="hx-rule"></div>
       <div class="hx-hero-foot">
         <p class="hx-tagline">{html.escape(meta.get('lede', ''))}</p>
-        {cta}
       </div>
-    </div>
-    <div class="hx-hero-bottom">
-      <span class="hx-label hx-dim">Fashion agency and media ecosystem</span>
-      <span class="hx-label">Scroll <span class="hx-arrow-down" aria-hidden="true">&darr;</span></span>
     </div>
   </div>
 </section>
@@ -236,7 +219,7 @@ def main() -> None:
             .replace("{{header}}", header_html(path))
             .replace("{{footer}}", footer_html(legal))
             .replace("{{brief}}", brief_html(meta))
-            .replace("{{body_class}}", "home" if path == "/" else "")
+            .replace("{{body_class}}", " ".join(c for c in ("home" if path == "/" else "", "has-hero" if path == "/" or meta.get("h1") else "") if c))
             .replace("{{head_extra}}", f'<link rel="stylesheet" href="{meta["css"]}">' if meta.get("css") else "")
             .replace("{{scripts_extra}}", f'<script src="{meta["js"]}" defer></script>' if meta.get("js") else "")
             .replace("{{content}}", hero_html(meta) + subnav_html(meta) + expand_partials(meta["body"]))

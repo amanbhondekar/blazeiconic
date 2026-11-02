@@ -172,10 +172,6 @@ def page(title, path, body, **meta):
     return d
 
 
-def cta_block(enquire_type=None):
-    return "{{> cta-split}}"
-
-
 # ==========================================================================
 # Generators
 # ==========================================================================
@@ -197,8 +193,7 @@ def talent_pages():
     pages.append(page(
         "Talent", "/talent/", body,
         description="[Meta description: the Blaze Iconic roster across Fashion, Beauty, Swimwear and Boudoir.]",
-        eyebrow="Talent", h1="Talent", lede="One directory for every model Blaze Iconic represents, filtered by category.",
-        cta="Enquire | /enquire/?type=book-talent", js="/talent.js", section="",
+        eyebrow="Talent", h1="Talent", lede="One directory for every model Blaze Iconic represents, filtered by category.", js="/talent.js", section="",
         job="Model discovery and booking. One directory, category filters, an individual profile for every model.",
         action="Book / Enquire from a profile", needs="Roster, model names, hero images, categories, optional location."))
 
@@ -278,7 +273,7 @@ def service_pages(section, items, hub_title, hub_lede, hub_job, hub_needs, paid_
     pages.append(page(
         hub_title, base, body,
         description=f"[Meta description: {hub_title} at Blaze Iconic.]",
-        eyebrow=hub_title, h1=hub_title, lede=hub_lede, cta=f"Enquire | /enquire/?type={items[0]['enquire']}",
+        eyebrow=hub_title, h1=hub_title, lede=hub_lede,
         js="/preview.js", section=section, job=hub_job, action="Enquire", needs=hub_needs))
 
     for i, it in enumerate(items):
@@ -326,7 +321,7 @@ def service_pages(section, items, hub_title, hub_lede, hub_job, hub_needs, paid_
         pages.append(page(
             it["name"], f"{base}{it['slug']}/", body,
             description=f"[Meta description: {it['name']}, {hub_title} at Blaze Iconic.]",
-            eyebrow=hub_title, h1=it["name"], lede=it["lede"], cta=f"Enquire | /enquire/?type={it['enquire']}", section=section))
+            eyebrow=hub_title, h1=it["name"], lede=it["lede"], section=section))
     return pages
 
 
@@ -342,8 +337,7 @@ def portfolio_pages():
 
 {{{{> cta-split}}}}""",
         description="[Meta description: selected Blaze Iconic work across photoshoots, feature covers, editorials and billboards.]",
-        eyebrow="Portfolio", h1="Portfolio", lede="What Blaze Iconic has produced, facilitated or placed, curated as work and not as a feed.",
-        cta="Enquire | /enquire/", section="portfolio",
+        eyebrow="Portfolio", h1="Portfolio", lede="What Blaze Iconic has produced, facilitated or placed, curated as work and not as a feed.", section="portfolio",
         job="Proof layer. Visual-first and editorial, not an Instagram-style feed.",
         action="Enquire from a project", needs="Projects, hero images, brands, publications, years, credits and usage permissions."))
     blurbs = {
@@ -362,7 +356,7 @@ def portfolio_pages():
 
 {{{{> cta-split}}}}""",
             description=f"[Meta description: {name} in the Blaze Iconic portfolio.]",
-            eyebrow="Portfolio", h1=name, lede=blurbs[slug], cta="Enquire | /enquire/", section="portfolio"))
+            eyebrow="Portfolio", h1=name, lede=blurbs[slug], section="portfolio"))
     for k, (slug, cat) in enumerate(ITEMS):
         title = f"[Project / Brand name {slug[-2:]}]"
         img = WIDE[k % 4]
@@ -432,7 +426,7 @@ def article_pages(section, label, cats, items, hub_title, hub_lede, hub_job):
 
 {{{{> cta-split}}}}""",
         description=f"[Meta description: {hub_title} from Blaze Iconic.]",
-        eyebrow=hub_title, h1=hub_title, lede=hub_lede, cta="Enquire | /enquire/", section=section, job=hub_job,
+        eyebrow=hub_title, h1=hub_title, lede=hub_lede, section=section, job=hub_job,
         action="Read a story", needs="Content owner and publishing rhythm. Merge News into Journal later if volume stays low."))
     for slug, name in cats:
         pages.append(page(
@@ -444,7 +438,7 @@ def article_pages(section, label, cats, items, hub_title, hub_lede, hub_job):
 
 {{{{> cta-split}}}}""",
             description=f"[Meta description: {name}, {hub_title} from Blaze Iconic.]",
-            eyebrow=hub_title, h1=name, lede=f"{hub_title}: {name}.", cta="Enquire | /enquire/", section=section))
+            eyebrow=hub_title, h1=name, lede=f"{hub_title}: {name}.", section=section))
     for k, (slug, cat) in enumerate(items):
         t = f"[{label} title {slug[-2:]}]"
         body = f"""<section class="hx-paper">
@@ -501,7 +495,7 @@ def universe_pages():
         pages.append(page(
             u["name"], f"/{u['slug']}/", body,
             description=f"[Meta description: {u['name']}, a {u['kind'].lower()} in the Blaze Universe.]",
-            eyebrow=u["kind"], h1=u["name"], lede=u["lede"], cta="Enquire | /enquire/?type=editorial-cover", section="", hero_image="hero-b" if u["kind"] == "Magazine" else "hero-d",
+            eyebrow=u["kind"], h1=u["name"], lede=u["lede"], section="", hero_image="hero-b" if u["kind"] == "Magazine" else "hero-d",
             job=f"A property in the Blaze Universe, not a sub-page of the agency's services. {u['kind']}.",
             action="Open the latest", needs="Destination (own site or this page), logo artwork, latest issue or episode, links."))
     return pages
