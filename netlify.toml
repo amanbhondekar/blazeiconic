@@ -1,0 +1,8 @@
+# Netlify: build the static site from src/ into public/.
+# build.py uses only the Python standard library.
+[build]
+  command = "python build.py"
+  publish = "public"
+
+[build.environment]
+  PYTHON_VERSION = "3.12"

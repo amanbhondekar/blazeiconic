@@ -7,3 +7,6 @@ reference-posture-template/
 __pycache__/
 *.pyc
 .claude/settings.local.json
+
+# Netlify link state
+.netlify
