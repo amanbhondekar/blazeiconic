@@ -1,4 +1,4 @@
-// Home only: package list -> preview swap (blur + scale crossfade, as in the reference).
+// List -> preview swap (blur + scale crossfade, as in the reference). Used on Home and the Expertise and PR hubs.
 // Scroll reveal and the drag rail live in main.js so every page shares them.
 const rows = document.querySelectorAll('.hx-row[data-index]');
 const preview = document.getElementById('hxPreview');

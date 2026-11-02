@@ -1,27 +1,29 @@
 title: Home
-description: Blaze Iconic is a publisher and PR service for models. Paid features are labelled Sponsored feature.
+description: Blaze Iconic is a fashion agency and media ecosystem: talent, expertise, PR and portfolio, with its own magazines and podcast.
 path: /
-js: /home.js
+js: /preview.js
 ---
-<!-- Home sections, in the reference order: hero, intro + standards row, packages, work, how it works,
-     about, titles + FAQ strip, split call-outs. IA job: say what Blaze Iconic is and is not, show proof
-     without stats, route to one action (Book a call). Needs from Blaze: named people, legal entity, US address. -->
+<!-- Home, in the IA order: 01 Hero, 02 Talent, 03 Expertise, 04 Portfolio, 05 PR, 06 The Blaze Universe,
+     07 Journal / News, 08 Get Scouted, 09 Enquire. The agency proposition stays dominant. -->
 
-<!-- 1 · Hero -->
+<!-- 01 · Hero -->
 <section class="hx-hero">
   <img class="hx-hero-bg" src="/assets/img/hero-a.jpg" alt="" width="2400" height="1500" fetchpriority="high">
   <div class="hx-hero-shade" aria-hidden="true"></div>
   <div class="hx-hero-inner">
     <div class="hx-hero-meta">
-      <span class="hx-label">Publisher and PR service</span>
-      <span class="hx-label">Paid features are labelled</span>
+      <span class="hx-label">Fashion agency</span>
+      <span class="hx-label">Media ecosystem</span>
     </div>
     <div class="hx-title-wrap">
       <h1 class="hx-title"><img src="/assets/logo/wordmark-landscape-ink.svg" alt="Blaze Iconic" width="527" height="65"></h1>
       <div class="hx-rule"></div>
       <div class="hx-hero-foot">
-        <p class="hx-tagline">A publisher and PR service for models, not an agency that represents them.</p>
-        <a class="hx-btn hx-btn--red" href="/book/">Book a call <span class="arrow">&rarr;</span></a>
+        <p class="hx-tagline">Talent, production, PR and publishing under one name. [Positioning line, final wording by Blaze.]</p>
+        <div class="hx-inline-links">
+          <a class="hx-btn hx-btn--red" href="/enquire/">Enquire <span class="arrow">&rarr;</span></a>
+          <a class="hx-btn" href="/get-scouted/">Get Scouted <span class="arrow">&nearr;</span></a>
+        </div>
       </div>
     </div>
     <div class="hx-hero-bottom">
@@ -31,114 +33,85 @@ js: /home.js
   </div>
 </section>
 
-<!-- 2 · What is Blaze Iconic? + standards row -->
-<section class="hx-intro">
-  <div class="hx-intro-grid">
-    <div class="hx-intro-side">
-      <p class="hx-label reveal">01 &mdash; What is Blaze Iconic?</p>
-      <div class="hx-ghost reveal" aria-hidden="true"><img src="/assets/logo/wordmark-portrait-ink.svg" alt="" width="252" height="133"></div>
-    </div>
-    <div class="hx-intro-main">
-      <h2 class="hx-display reveal">A publisher and PR service for models, not an agent.</h2>
-      <div class="hx-intro-copy reveal">
-        <p>Blaze Iconic takes a model from a first call to a published feature. Features run in our titles, starting with Blaze Mags, and every paid one is labelled Sponsored feature.</p>
-        <p>We do not represent models, book work or promise editorial coverage. [Final wording pending counsel.]</p>
-      </div>
-    </div>
-  </div>
-  <div class="hx-stats">
-    <a class="hx-stat reveal" href="/standards/"><span class="hx-stat-title">Publisher, not agent</span><span class="hx-label">01</span></a>
-    <a class="hx-stat reveal" href="/standards/"><span class="hx-stat-title">Paid, and labelled</span><span class="hx-label">02</span></a>
-    <a class="hx-stat reveal" href="/standards/"><span class="hx-stat-title">Rights in writing</span><span class="hx-label">03</span></a>
-    <a class="hx-stat reveal" href="/standards/#under-18"><span class="hx-stat-title">Age and consent checked</span><span class="hx-label">04</span></a>
-  </div>
-</section>
-
-<!-- 3 · Packages -->
-<section class="hx-section hx-alt hx-bordered" id="packages">
+<!-- 02 · Talent -->
+<section class="hx-paper" id="talent">
   <div class="hx-head">
     <div>
-      <p class="hx-label reveal">02 &mdash; Packages</p>
-      <h2 class="hx-display reveal">Three tiers, one custom plan</h2>
+      <p class="hx-label reveal">01 &mdash; Talent</p>
+      <h2 class="hx-display reveal">Selected talent</h2>
     </div>
-    <a class="hx-btn hx-btn--sm" href="/packages/">View all <span class="arrow">&nearr;</span></a>
+    <a class="hx-btn hx-btn--sm" href="/talent/">All Talent <span class="arrow">&nearr;</span></a>
+  </div>
+  {{@talent_chips}}
+  {{@talent_rail}}
+</section>
+
+<!-- 03 · Expertise -->
+<section class="hx-section hx-alt hx-bordered" id="expertise">
+  <div class="hx-head">
+    <div>
+      <p class="hx-label reveal">02 &mdash; Expertise</p>
+      <h2 class="hx-display reveal">What we do</h2>
+    </div>
+    <a class="hx-btn hx-btn--sm" href="/expertise/">View all <span class="arrow">&nearr;</span></a>
   </div>
   <div class="hx-list-grid">
-    <div class="hx-list">
-      <a class="hx-row is-active" data-index="0" href="/packages/"><span class="hx-label hx-dim hx-row-idx">01</span><span class="hx-row-name">01 [Tier name]</span><span class="hx-label hx-dim">Blaze Mags &middot; [Price]</span></a>
-      <a class="hx-row" data-index="1" href="/packages/"><span class="hx-label hx-dim hx-row-idx">02</span><span class="hx-row-name">02 [Tier name]</span><span class="hx-label hx-dim">Blaze Mags &middot; [Price]</span></a>
-      <a class="hx-row" data-index="2" href="/packages/"><span class="hx-label hx-dim hx-row-idx">03</span><span class="hx-row-name">03 [Tier name]</span><span class="hx-label hx-dim">Blaze Mags &middot; [Price]</span></a>
-      <a class="hx-row" data-index="3" href="/packages/"><span class="hx-label hx-dim hx-row-idx">04</span><span class="hx-row-name">04 Custom plan</span><span class="hx-label hx-dim">Quoted after a call</span></a>
-    </div>
+    <div class="hx-list">{{@expertise_rows}}</div>
     <figure class="hx-preview">
       <img class="hx-preview-img" id="hxPreview" src="/assets/img/prev-1.jpg" alt="" width="1250" height="1000" loading="lazy">
-      <span class="label-tab">Sponsored feature</span>
       <figcaption class="hx-preview-tag hx-label" id="hxPreviewTag">Preview 01</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- 4 · Work -->
-<section class="hx-section hx-alt hx-bordered" id="work">
+<!-- 04 · Portfolio -->
+<section class="hx-paper" id="portfolio">
   <div class="hx-head">
     <div>
-      <p class="hx-label reveal">03 &mdash; Work</p>
-      <h2 class="hx-display reveal">The archive</h2>
+      <p class="hx-label reveal">03 &mdash; Portfolio</p>
+      <h2 class="hx-display reveal">Selected work</h2>
     </div>
-    <a class="hx-link" href="/work/">Open archive &nearr;</a>
+    <a class="hx-btn hx-btn--sm" href="/portfolio/">Open portfolio <span class="arrow">&nearr;</span></a>
   </div>
-  <div class="hx-rail" id="hxRail">
-    <div class="hx-track">
-      <a class="hx-card light" href="/work/"><img class="hx-card-img" src="/assets/img/card-1.jpg" alt="" width="1000" height="1250" loading="lazy" draggable="false"><span class="label-tab">Sponsored feature</span><span class="hx-card-credit">[Model] &middot; [Feature]</span></a>
-      <a class="hx-card" href="/work/"><img class="hx-card-img" src="/assets/img/card-2.jpg" alt="" width="1000" height="1250" loading="lazy" draggable="false"><span class="label-tab">Sponsored feature</span><span class="hx-card-credit">[Model] &middot; [Feature]</span></a>
-      <a class="hx-card light" href="/work/"><img class="hx-card-img" src="/assets/img/card-3.jpg" alt="" width="1000" height="1250" loading="lazy" draggable="false"><span class="label-tab">Sponsored feature</span><span class="hx-card-credit">[Model] &middot; [Feature]</span></a>
-      <a class="hx-card light" href="/work/"><img class="hx-card-img" src="/assets/img/card-4.jpg" alt="" width="1000" height="1250" loading="lazy" draggable="false"><span class="label-tab">Sponsored feature</span><span class="hx-card-credit">[Model] &middot; [Feature]</span></a>
-      <a class="hx-card" href="/work/"><img class="hx-card-img" src="/assets/img/card-5.jpg" alt="" width="1000" height="1250" loading="lazy" draggable="false"><span class="label-tab">Sponsored feature</span><span class="hx-card-credit">[Model] &middot; [Feature]</span></a>
-    </div>
-  </div>
+  {{@portfolio_grid}}
 </section>
 
-<!-- 5 · How it works -->
-<section class="hx-band">
+<!-- 05 · PR -->
+<section class="hx-band" id="pr">
   <img class="hx-band-bg" src="/assets/img/band.jpg" alt="" width="2400" height="1350" loading="lazy">
   <div class="hx-band-shade" aria-hidden="true"></div>
   <div class="hx-band-inner">
-    <p class="hx-label reveal">04 &mdash; How it works</p>
-    <h2 class="hx-band-title reveal">Seven steps from first call to publication.</h2>
-    <a class="hx-btn hx-btn--solid reveal" href="/how-it-works/">See the seven steps <span class="arrow">&rarr;</span></a>
+    <p class="hx-label reveal">04 &mdash; PR</p>
+    <h2 class="hx-band-title reveal">Positioned, promoted, amplified.</h2>
+    <a class="hx-btn hx-btn--solid reveal" href="/pr/">Explore PR <span class="arrow">&rarr;</span></a>
   </div>
-  <div class="hx-band-address hx-label">[LEGAL ENTITY] &middot; [US ADDRESS]</div>
+  <div class="hx-band-address hx-label hx-band-links">{{@pr_links}}</div>
 </section>
 
-<!-- 6 · About -->
-<section class="hx-about">
-  <img class="hx-portrait reveal" src="/assets/img/portrait.jpg" alt="Portrait placeholder" width="1000" height="1250" loading="lazy">
-  <div class="hx-about-text">
-    <p class="hx-label reveal">05 &mdash; About</p>
-    <h2 class="hx-name reveal">The people behind it.</h2>
-    <p class="hx-bio reveal">[Named people, the legal entity and the US address go here, with a line on how Blaze Iconic relates to Blaze Mags.]</p>
-    <a class="hx-btn hx-btn--ghost reveal" href="/about/">About Blaze Iconic <span class="arrow">&rarr;</span></a>
+<!-- 06 · The Blaze Universe -->
+<section class="hx-section hx-alt hx-bordered" id="universe">
+  <div class="hx-head">
+    <div>
+      <p class="hx-label reveal">05 &mdash; The Blaze Universe</p>
+      <h2 class="hx-display reveal">Two magazines and a podcast</h2>
+    </div>
+  </div>
+  {{@universe_cards}}
+</section>
+
+<!-- 07 · Journal / News -->
+<section class="hx-paper">
+  <div class="hx-twin">
+    <div>
+      {{@journal_head}}
+      <div class="hx-list hx-list--plain hx-list--sm">{{@journal_rows}}</div>
+    </div>
+    <div>
+      {{@news_head}}
+      <div class="hx-list hx-list--plain hx-list--sm">{{@news_rows}}</div>
+    </div>
   </div>
 </section>
 
-<!-- 6b · Our titles + FAQ -->
-<section class="hx-alt hx-bordered hx-strip">
-  <a class="hx-strip-item" href="https://blazemagazines.com" rel="noopener"><span class="hx-label hx-dim">Our titles</span><span class="hx-strip-name">Blaze Mags &nearr;</span></a>
-  <a class="hx-strip-item" href="/faq/"><span class="hx-label hx-dim">Questions</span><span class="hx-strip-name">Read the FAQ &rarr;</span></a>
-</section>
-
-<!-- 7 · Split call-outs -->
-<section class="hx-split">
-  <div class="hx-cta hx-cta-dark">
-    <p class="hx-label">Ready to talk</p>
-    <h2 class="hx-cta-title">Book a call.</h2>
-    <p class="hx-cta-copy">A short discovery call. Tiers are requested here and confirmed on the call.</p>
-    <a class="hx-btn hx-btn--paper" href="/book/">Book a call <span class="arrow">&rarr;</span></a>
-  </div>
-  <div class="hx-cta hx-cta-light">
-    <p class="hx-label hx-dim">Not ready to talk</p>
-    <h2 class="hx-cta-title">Answer a few questions.</h2>
-    <p class="hx-cta-copy">A short questionnaire points to a tier or a custom plan.</p>
-    <a class="hx-btn" href="/assessment/">Take the assessment <span class="arrow">&nearr;</span></a>
-  </div>
-</section>
+<!-- 08 Get Scouted · 09 Enquire -->
+{{> cta-split}}

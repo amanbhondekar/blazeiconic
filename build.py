@@ -15,14 +15,20 @@ then the page body. Keys:
                          builds the page hero (cta is "Label | /href")
     {{> name}} in a body includes src/partials/name.html
 
-Header, footer and layout are defined here and in src/layout.html, so the
-navigation is edited in one place.
+    section: key        adds the section sub-navigation under the hero (see SUBNAV)
+    hero_image: name     overrides the picked hero picture (src/assets/img/<name>.jpg)
+
+Many pages (Talent, Expertise, PR, Portfolio, Journal, News, the Blaze Universe) are
+generated from the structured data in content.py. Header, footer and layout are defined
+here and in src/layout.html, so the navigation is edited in one place.
 """
 import html
 import re
 import shutil
 import zlib
 from pathlib import Path
+
+import content
 
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
@@ -33,14 +39,29 @@ SITE = "Blaze Iconic"
 # Page-hero images (src/assets/img); each page picks one by its URL. Swap files for real photography.
 HERO_IMAGES = ["hero-b", "hero-c", "hero-d"]
 
-# Header: five items and one button (IA, Navigation and footer)
+# Header: four items and two calls to action (IA, Final Navigation System)
 NAV = [
-    ("Packages", "/packages/"),
-    ("How it works", "/how-it-works/"),
-    ("Work", "/work/"),
-    ("Standards", "/standards/"),
-    ("About", "/about/"),
+    ("Talent", "/talent/"),
+    ("Expertise", "/expertise/"),
+    ("PR", "/pr/"),
+    ("Portfolio", "/portfolio/"),
 ]
+
+# Section sub-navigation, shown under the page hero
+SUBNAV = {
+    "expertise": [("Overview", "/expertise/")] + [(e["name"], f"/expertise/{e['slug']}/") for e in content.EXPERTISE],
+    "pr": [("Overview", "/pr/")] + [(e["name"], f"/pr/{e['slug']}/") for e in content.PR],
+    "portfolio": [("All", "/portfolio/")] + [(n, f"/portfolio/{s}/") for s, n in content.PORT_CATS],
+    "journal": [("All", "/journal/")] + [(n, f"/journal/{s}/") for s, n in content.JOURNAL_CATS],
+    "news": [("All", "/news/")] + [(n, f"/news/{s}/") for s, n in content.NEWS_CATS],
+    "get-scouted": [
+        ("About Scouting", "/get-scouted/"),
+        ("What We're Looking For", "/get-scouted/looking-for/"),
+        ("Requirements", "/get-scouted/requirements/"),
+        ("Application", "/get-scouted/apply/"),
+    ],
+    "about": [("About Blaze Iconic", "/about/"), ("Our Approach", "/about/our-approach/"), ("Contact / Desks", "/about/contact/")],
+}
 
 # Bracketed values are placeholders until Blaze confirms them (IA: "Needs from Blaze")
 ENTITY = "[LEGAL ENTITY]"
@@ -65,7 +86,8 @@ def header_html(current: str) -> str:
     for label, href in NAV:
         active = ' aria-current="page"' if current.startswith(href) else ""
         links.append(f'<a href="{href}"{active}>{label}</a>')
-    links.append('<a class="btn btn--sm" href="/book/">Book a call</a>')
+    links.append('<a class="btn btn--line" href="/get-scouted/">Get Scouted</a>')
+    links.append('<a class="btn" href="/enquire/">Enquire</a>')
     return f"""<header class="site-header">
   <div class="hd-inner">
     <a class="hd-word" href="/" aria-label="Blaze Iconic, home"><img src="/assets/logo/wordmark-landscape-ink.svg" alt="Blaze Iconic" width="162" height="20"></a>
@@ -81,29 +103,29 @@ def footer_html(legal: bool) -> str:
     colophon = (
         f'<span>Published by {ENTITY}. Part of Blaze Iconic.</span>' if legal else f"<span>&copy; [YEAR] {ENTITY}</span>"
     )
+
+    def col(title, href, links):
+        items = "".join(f'<a href="{h}">{n}</a>' for n, h in links)
+        return f'<div class="ft-col"><h2><a href="{href}">{title}</a></h2>{items}</div>'
+
+    journal = col("Journal", "/journal/", [(n, f"/journal/{s}/") for s, n in content.JOURNAL_CATS])
+    about = col("About", "/about/", [("About Blaze Iconic", "/about/"), ("Our Approach", "/about/our-approach/"), ("Contact / Desks", "/about/contact/")])
+    news = col("News", "/news/", [(n, f"/news/{s}/") for s, n in content.NEWS_CATS])
+    universe = col("The Blaze Universe", "/#universe", [(f"{u['name']}", f"/{u['slug']}/") for u in content.UNIVERSE])
     return f"""<footer class="site-footer">
   <div class="ft-main">
     <div class="ft-lead">
-      <h2 class="ft-title">Start with a call.</h2>
+      <h2 class="ft-title">Work with Blaze Iconic.</h2>
       <div class="ft-actions">
-        <a class="hx-btn hx-btn--red" href="/book/">Book a call <span class="arrow">&rarr;</span></a>
-        <a class="hx-btn hx-btn--line" href="/contact/">Contact us <span class="arrow">@</span></a>
+        <a class="hx-btn hx-btn--red" href="/enquire/">Enquire <span class="arrow">&rarr;</span></a>
+        <a class="hx-btn" href="/get-scouted/">Get Scouted <span class="arrow">&nearr;</span></a>
       </div>
     </div>
     <nav class="ft-cols" aria-label="Footer">
-      <div class="ft-col">
-        <h2>Company</h2>
-        <a href="/about/">About</a><a href="/faq/">FAQ</a><a href="/contact/">Contact</a><a href="/book/">Book a call</a>
-      </div>
-      <div class="ft-col">
-        <h2>Our titles</h2>
-        <a href="https://blazemagazines.com" rel="noopener">Blaze Mags <span aria-hidden="true">&nearr;</span></a>
-        <!-- The Black Mags and Mirror Mags: add once their landing pages are live -->
-      </div>
-      <div class="ft-col">
-        <h2>Legal</h2>
-        <a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="/accessibility/">Accessibility</a><a href="/standards/#under-18">Under-18 policy</a>
-      </div>
+      {journal}
+      {about}
+      {news}
+      {universe}
     </nav>
   </div>
   <a class="ft-wordmark" href="/" aria-label="Blaze Iconic, home"><img src="/assets/logo/wordmark-landscape-ink.svg" alt="Blaze Iconic" width="527" height="65" loading="lazy"></a>
@@ -111,9 +133,21 @@ def footer_html(legal: bool) -> str:
     {colophon}
     <span>{ADDRESS}</span>
     <span>{EMAIL}</span>
+    <span class="ft-legal"><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="/accessibility/">Accessibility</a><a href="/get-scouted/requirements/#under-18">Under-18 policy</a></span>
     <a href="#">Back to top <span aria-hidden="true">&uarr;</span></a>
   </div>
 </footer>"""
+
+
+def subnav_html(meta: dict) -> str:
+    key = meta.get("section")
+    if not key or not meta.get("h1") or key not in SUBNAV:
+        return ""
+    links = "".join(
+        '<a href="{}"{}>{}</a>'.format(h, ' aria-current="page"' if h == meta["path"] else "", html.escape(n)) for n, h in SUBNAV[key]
+    )
+    label = key.replace("-", " ").title()
+    return '<nav class="hx-subnav" aria-label="{} sections">{}</nav>'.format(label, links) + "\n"
 
 
 def brief_html(meta: dict) -> str:
@@ -134,8 +168,8 @@ def hero_html(meta: dict) -> str:
     cta = ""
     if meta.get("cta"):
         label, _, href = meta["cta"].partition("|")
-        cta = f'<a class="hx-btn hx-btn--red" href="{href.strip()}">{html.escape(label.strip())} <span class="arrow">&rarr;</span></a>'
-    img = HERO_IMAGES[zlib.crc32(meta["path"].encode()) % len(HERO_IMAGES)]
+        cta = f'<a class="hx-btn hx-btn--red" href="{html.escape(href.strip())}">{html.escape(label.strip())} <span class="arrow">&rarr;</span></a>'
+    img = meta.get("hero_image") or HERO_IMAGES[zlib.crc32(meta["path"].encode()) % len(HERO_IMAGES)]
     return f"""<section class="hx-hero hx-hero--page">
   <img class="hx-hero-bg" src="/assets/img/{img}.jpg" alt="" width="2000" height="1250" fetchpriority="high">
   <div class="hx-hero-shade" aria-hidden="true"></div>
@@ -162,6 +196,8 @@ def hero_html(meta: dict) -> str:
 
 
 def expand_partials(text: str) -> str:
+    frags = content.fragments()
+    text = re.sub(r"\{\{@([\w-]+)\}\}", lambda m: frags[m.group(1)], text)
     return re.sub(
         r"\{\{>\s*([\w-]+)\s*\}\}",
         lambda m: (SRC / "partials" / f"{m.group(1)}.html").read_text(encoding="utf-8"),
@@ -179,14 +215,17 @@ def main() -> None:
     shutil.copytree(SRC / "assets", OUT / "assets")
     shutil.copy(SRC / "styles.css", OUT / "styles.css")
     shutil.copy(SRC / "main.js", OUT / "main.js")
-    for extra in ("components.css", "home.js"):
+    for extra in ("components.css", "preview.js", "talent.js", "enquire.js"):
         shutil.copy(SRC / extra, OUT / extra)
     (OUT / "robots.txt").write_text("# Staging build: keep out of search until launch\nUser-agent: *\nDisallow: /\n", encoding="utf-8")
 
     count = 0
-    for page_file in sorted((SRC / "pages").glob("*.html")):
-        meta = parse_page(page_file)
+    pages = [parse_page(f) for f in sorted((SRC / "pages").glob("*.html"))] + content.generate()
+    seen = set()
+    for meta in pages:
         path = meta["path"]
+        assert path not in seen, f"duplicate page path {path}"
+        seen.add(path)
         legal = meta.get("legal", "").lower() == "yes"
         title = meta["title"]
         full_title = SITE if path == "/" else f"{title} · {SITE}"
@@ -200,7 +239,7 @@ def main() -> None:
             .replace("{{body_class}}", "home" if path == "/" else "")
             .replace("{{head_extra}}", f'<link rel="stylesheet" href="{meta["css"]}">' if meta.get("css") else "")
             .replace("{{scripts_extra}}", f'<script src="{meta["js"]}" defer></script>' if meta.get("js") else "")
-            .replace("{{content}}", hero_html(meta) + expand_partials(meta["body"]))
+            .replace("{{content}}", hero_html(meta) + subnav_html(meta) + expand_partials(meta["body"]))
         )
         page = page.replace("{{entity}}", ENTITY).replace("{{address}}", ADDRESS).replace("{{email}}", EMAIL)
 

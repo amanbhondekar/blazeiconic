@@ -117,11 +117,11 @@ render("hero-d", 2000, 1250, 44, "soft", **SOFT)
 render("band", 2400, 1350, 55, "soft", **SOFT)
 
 # Package previews (5:4)
-for i, (seed, tone) in enumerate([(61, "paper"), (62, "graphite"), (63, "paper"), (64, "graphite")], 1):
+for i, (seed, tone) in enumerate([(61, "paper"), (62, "graphite"), (63, "paper"), (64, "graphite"), (65, "paper")], 1):
     render(f"prev-{i}", 1250, 1000, seed, tone, dark_edges=0.15 if tone == "paper" else 0.3)
 
 # Work cards (4:5). "paper" cards take Ink credit text; "graphite" cards take Paper text.
-for i, (seed, tone) in enumerate([(71, "paper"), (72, "graphite"), (73, "paper"), (74, "paper"), (75, "graphite")], 1):
+for i, (seed, tone) in enumerate([(71, "paper"), (72, "graphite"), (73, "paper"), (74, "paper"), (75, "graphite"), (76, "paper"), (77, "graphite"), (78, "paper")], 1):
     render(f"card-{i}", 1000, 1250, seed, tone, dark_edges=0.15 if tone == "paper" else 0.3)
 
 # People and portrait (4:5)

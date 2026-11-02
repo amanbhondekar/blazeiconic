@@ -1,0 +1,51 @@
+title: Application
+description: [Meta description: apply to be scouted by Blaze Iconic.]
+path: /get-scouted/apply/
+section: get-scouted
+eyebrow: Get Scouted
+h1: Application
+lede: Tell us about you. It takes a few minutes.
+job: The scouting form.
+action: Submit Application
+needs: Form backend, file-upload handling and storage, age-check wording from counsel, privacy link.
+---
+<section class="hx-paper">
+  <div class="hx-cols">
+    <div class="hx-cols-head">
+      <p class="hx-label reveal">01 &mdash; Apply</p>
+      <h2 class="hx-display reveal">Get Scouted</h2>
+      <aside class="hx-notice reveal" style="margin-top:var(--sp-5)">
+        <p class="hx-label">Before you start</p>
+        <p>Have your photos, digitals and measurements ready. See the <a href="/get-scouted/requirements/">requirements</a>.</p>
+      </aside>
+    </div>
+    <form class="hx-form" action="/get-scouted/sent/" method="get">
+      <div class="hx-field"><label for="a-name">Full name</label><input id="a-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="hx-field"><label for="a-email">Email</label><input id="a-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="hx-field"><label for="a-phone">Phone</label><input id="a-phone" name="phone" type="text" autocomplete="tel"></div>
+      <div class="hx-field"><label for="a-loc">Location</label><input id="a-loc" name="location" type="text" required></div>
+      <div class="hx-field"><label for="a-ig">Instagram handle</label><input id="a-ig" name="instagram" type="text" placeholder="@"></div>
+      <fieldset class="hx-field">
+        <legend>Categories of interest</legend>
+        <div class="hx-choices">
+          <label class="hx-choice"><input type="checkbox" name="category" value="fashion"> <span>Fashion</span></label>
+          <label class="hx-choice"><input type="checkbox" name="category" value="beauty"> <span>Beauty</span></label>
+          <label class="hx-choice"><input type="checkbox" name="category" value="swimwear"> <span>Swimwear</span></label>
+          <label class="hx-choice"><input type="checkbox" name="category" value="boudoir"> <span>Boudoir</span></label>
+        </div>
+      </fieldset>
+      <div class="hx-field"><label for="a-meas">Measurements</label><textarea id="a-meas" name="measurements" placeholder="[Height, bust, waist, hips, shoe]"></textarea></div>
+      <div class="hx-field"><label for="a-photos">Photos and digitals</label><input id="a-photos" name="photos" type="file" accept="image/*" multiple><p class="hx-hint">[Upload handling pending. File types and sizes to be confirmed.]</p></div>
+      <fieldset class="hx-field">
+        <legend>Age and consent</legend>
+        <div class="hx-choices">
+          <label class="hx-choice"><input type="checkbox" name="age_confirm" required> <span>[I confirm I am over the minimum age and agree to the <a href="/privacy/">privacy policy</a>. Wording by counsel.]</span></label>
+        </div>
+      </fieldset>
+      <div class="hx-form-actions">
+        <button class="hx-btn hx-btn--red" type="submit">Submit Application <span class="arrow">&rarr;</span></button>
+        <p class="hx-form-note">[No-guarantee line beside Submit: applications are reviewed personally and nothing is guaranteed. Wording by counsel.]</p>
+      </div>
+    </form>
+  </div>
+</section>

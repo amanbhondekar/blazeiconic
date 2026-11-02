@@ -1,0 +1,95 @@
+title: Enquire
+description: [Meta description: one enquiry flow for booking talent, photoshoots, editorial and cover features, PR and general questions.]
+path: /enquire/
+js: /enquire.js
+eyebrow: Enquire
+h1: Enquire
+lede: One enquiry, routed to the right desk. Tell us what you need and we will ask only what is relevant.
+job: Primary commercial conversion. One structured flow, five enquiry types, fields that change with the choice.
+action: Send enquiry
+needs: Desk email addresses, response-time wording, form backend, budget ranges, counsel wording on the no-guarantee line.
+---
+<section class="hx-paper">
+  <div class="hx-cols">
+    <div class="hx-cols-head">
+      <p class="hx-label reveal">01 &mdash; What can we help you with?</p>
+      <h2 class="hx-display reveal">Start with the type of enquiry</h2>
+      <aside class="hx-notice reveal" id="check-its-us" aria-label="How to check it is us" style="margin-top:var(--sp-5)">
+        <p class="hx-label">Check it is us</p>
+        <p>[Short scam-defence line: we write only from [official email domain], on [verified accounts], and never through [channels we never use].]</p>
+        <p><a href="/about/contact/#check-its-us">Read the full statement</a></p>
+      </aside>
+    </div>
+    <form class="hx-form" id="enquiryForm" action="/enquire/sent/" method="get">
+      <fieldset class="hx-field">
+        <legend>What can we help you with?</legend>
+        <div class="hx-choices">
+          <label class="hx-choice"><input type="radio" name="type" value="book-talent" required> <span>Book Talent</span></label>
+          <label class="hx-choice"><input type="radio" name="type" value="photoshoot"> <span>Photoshoot / Production</span></label>
+          <label class="hx-choice"><input type="radio" name="type" value="editorial-cover"> <span>Editorial / Cover</span></label>
+          <label class="hx-choice"><input type="radio" name="type" value="pr-media"> <span>PR &amp; Media</span></label>
+          <label class="hx-choice"><input type="radio" name="type" value="general"> <span>General Enquiry</span></label>
+        </div>
+      </fieldset>
+
+      <div class="hx-form-group" data-type="book-talent">
+        <p class="hx-label">Book Talent</p>
+        <div class="hx-field"><label for="talent">Talent of interest</label><input id="talent" name="talent" type="text" placeholder="[Model name or profile]"></div>
+        <div class="hx-field"><label for="bt-dates">Dates</label><input id="bt-dates" name="dates" type="text" placeholder="[Date or window]"></div>
+        <div class="hx-field"><label for="bt-loc">Location</label><input id="bt-loc" name="location" type="text"></div>
+        <div class="hx-field"><label for="bt-brief">The project</label><textarea id="bt-brief" name="brief"></textarea></div>
+      </div>
+
+      <div class="hx-form-group" data-type="photoshoot">
+        <p class="hx-label">Photoshoot / Production</p>
+        <div class="hx-field">
+          <label for="ps-kind">Type of shoot</label>
+          <select id="ps-kind" name="shoot_kind">
+            <option value="">Select</option>
+            <option>Campaign</option><option>Fashion</option><option>Beauty</option><option>Product</option><option>Model</option><option>Billboard / OOH</option>
+          </select>
+        </div>
+        <div class="hx-field"><label for="ps-dates">Dates</label><input id="ps-dates" name="dates" type="text" placeholder="[Date or window]"></div>
+        <div class="hx-field"><label for="ps-budget">Budget range</label><select id="ps-budget" name="budget"><option value="">[Budget ranges]</option><option>[Range 1]</option><option>[Range 2]</option><option>[Range 3]</option><option>[Not sure yet]</option></select></div>
+        <div class="hx-field"><label for="ps-brief">The brief</label><textarea id="ps-brief" name="brief"></textarea></div>
+      </div>
+
+      <div class="hx-form-group" data-type="editorial-cover">
+        <p class="hx-label">Editorial / Cover</p>
+        <div class="hx-field">
+          <label for="ec-kind">What are you looking for?</label>
+          <select id="ec-kind" name="editorial_kind"><option value="">Select</option><option>Cover feature</option><option>Editorial</option><option>Both</option></select>
+        </div>
+        <div class="hx-field"><label for="ec-pub">Publication or title</label><input id="ec-pub" name="publication" type="text" placeholder="[Publication]"></div>
+        <div class="hx-field"><label for="ec-timing">Timing</label><input id="ec-timing" name="timing" type="text" placeholder="[Issue date or window]"></div>
+        <div class="hx-field"><label for="ec-brief">The brief</label><textarea id="ec-brief" name="brief"></textarea></div>
+      </div>
+
+      <div class="hx-form-group" data-type="pr-media">
+        <p class="hx-label">PR &amp; Media</p>
+        <div class="hx-field">
+          <label for="pr-area">Area of interest</label>
+          <select id="pr-area" name="pr_area"><option value="">Select</option><option>Media Relations</option><option>Talent Positioning</option><option>Campaign PR</option><option>Digital &amp; Social</option><option>Reputation</option><option>Not sure yet</option></select>
+        </div>
+        <div class="hx-field"><label for="pr-who">Brand, campaign or talent</label><input id="pr-who" name="subject" type="text"></div>
+        <div class="hx-field"><label for="pr-brief">What are you hoping to achieve?</label><textarea id="pr-brief" name="brief"></textarea></div>
+      </div>
+
+      <div class="hx-form-group" data-type="general">
+        <p class="hx-label">General Enquiry</p>
+        <div class="hx-field"><label for="ge-brief">Your message</label><textarea id="ge-brief" name="brief"></textarea></div>
+      </div>
+
+      <div class="hx-form-group" data-rest>
+        <p class="hx-label">About you</p>
+        <div class="hx-field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+        <div class="hx-field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="hx-field"><label for="company">Company or brand</label><input id="company" name="company" type="text" autocomplete="organization"></div>
+        <div class="hx-form-actions">
+          <button class="hx-btn hx-btn--red" type="submit">Send enquiry <span class="arrow">&rarr;</span></button>
+          <p class="hx-form-note">[No-guarantee line beside Submit: enquiries are reviewed personally and nothing is guaranteed. Wording by counsel.]</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

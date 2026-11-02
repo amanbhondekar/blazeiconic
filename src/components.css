@@ -284,6 +284,86 @@
   .hx-strip-item { flex-direction: column; gap: var(--sp-1); align-items: flex-start; }
 }
 
+/* Roster, portfolio and media cards: 4:5 picture, name and a small line underneath ----------- */
+.hx-gcard { display: flex; flex-direction: column; gap: var(--sp-2); text-decoration: none; min-width: 0; }
+.hx-gimg { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: var(--paper-deep); }
+.hx-gimg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.22, 1, .36, 1); -webkit-user-drag: none; }
+.hx-gimg::after { content: ""; position: absolute; left: 0; bottom: 0; height: 4px; width: 0; background: var(--red); transition: width .6s var(--ease); z-index: 2; }
+a.hx-gcard:hover .hx-gimg img { transform: scale(1.04); }
+a.hx-gcard:hover .hx-gimg::after { width: 100%; }
+.hx-gimg .label-tab { position: absolute; left: 0; top: 0; z-index: 1; }
+.hx-gcap { display: flex; flex-direction: column; gap: 2px; }
+.hx-gname { font-family: var(--font-display); font-weight: 400; font-synthesis: none; letter-spacing: -.04em; font-size: var(--t05); line-height: 1.15; transition: color .25s; }
+a.hx-gcard:hover .hx-gname { color: var(--red); }
+.hx-track .hx-gcard { flex: 0 0 auto; width: min(22vw, 360px); }
+.hx-grid { display: grid; gap: var(--sp-5) var(--sp-4); }
+.hx-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.hx-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.hx-grid-note { margin-top: var(--sp-5); }
+.hx-empty { font-size: var(--t0); opacity: .7; padding: var(--sp-5) 0; }
+
+/* Filter chips and section sub-navigation ------------------------------------------------------ */
+.hx-chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-5); }
+.hx-chip { display: inline-flex; align-items: center; min-height: 40px; padding: 0 var(--sp-3); border: 1px solid var(--ink); font-weight: 500; font-size: var(--t-1); letter-spacing: .18em; text-transform: uppercase; text-decoration: none; transition: background-color .3s, border-color .3s, color .3s; }
+.hx-chip:hover { background: var(--red); border-color: var(--red); color: var(--paper); }
+.hx-chip.is-on { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.hx-strip .hx-chips { margin-bottom: 0; }
+.hx-subnav { display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-4); padding: var(--sp-3) var(--hx); border-bottom: 1px solid var(--line); background: var(--paper); }
+.hx-subnav a { font-weight: 500; font-size: var(--t-1); letter-spacing: .18em; text-transform: uppercase; text-decoration: none; opacity: .65; padding: var(--sp-1) 0; border-bottom: 1px solid transparent; transition: color .25s, opacity .25s, border-color .25s; }
+.hx-subnav a:hover { color: var(--red); opacity: 1; }
+.hx-subnav a[aria-current="page"] { opacity: 1; border-color: var(--ink); }
+
+/* Talent profile and portfolio item ------------------------------------------------------------- */
+.hx-profile { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--sp-6); align-items: start; }
+.hx-profile-img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; background: var(--paper-deep); }
+.hx-profile-text { display: flex; flex-direction: column; gap: var(--sp-4); align-items: flex-start; position: sticky; top: calc(var(--header-h) + var(--sp-4)); }
+.hx-spec { width: 100%; border-top: 1px solid var(--line); }
+.hx-spec > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--sp-3); padding: var(--sp-3) 0; border-bottom: 1px solid var(--line); }
+.hx-spec dt { font-weight: 500; font-size: var(--t-1); letter-spacing: .18em; text-transform: uppercase; opacity: .6; padding-top: .3em; }
+.hx-spec dd { font-size: var(--t0); line-height: 1.5; }
+.hx-spec a { text-underline-offset: .22em; transition: color .25s; }
+.hx-spec a:hover { color: var(--red); }
+.hx-digs { align-items: start; }
+.hx-dig { display: flex; flex-direction: column; gap: var(--sp-2); margin: 0; }
+.hx-dig img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; background: var(--paper-deep); }
+.hx-panel--wide { aspect-ratio: 16 / 7; }
+.hx-article-img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; background: var(--paper-deep); }
+
+/* Home: two columns (Journal and News), PR links in the band ---------------------------------------- */
+.hx-twin { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); align-items: start; }
+.hx-twin .hx-head { margin-bottom: var(--sp-4); align-items: flex-end; }
+.hx-twin .hx-display { font-size: clamp(var(--t15), 3.2vw, var(--t2)); }
+.hx-list--sm .hx-row-name { font-size: clamp(var(--t1), 2.4vw, var(--t15)); }
+.hx-list--sm .hx-row { grid-template-columns: 40px 1fr auto; align-items: center; }
+.hx-list--sm .hx-row .hx-label:last-child { padding-bottom: 0; }
+.hx-band-links { display: flex; flex-wrap: wrap; gap: var(--sp-1) var(--sp-4); }
+.hx-band-links a { text-decoration: none; transition: color .25s; }
+.hx-band-links a:hover { color: var(--red); }
+
+/* Enquiry flow: with JavaScript only the groups for the chosen type are shown ------------------------- */
+.hx-form-group { display: grid; gap: var(--sp-4); }
+.hx-form-group > .hx-label { opacity: .65; }
+.js #enquiryForm [data-type], .js #enquiryForm [data-rest] { display: none; }
+.js #enquiryForm [data-type].on, .js #enquiryForm [data-rest].on { display: grid; }
+.hx-field input[type="file"] { padding: var(--sp-2) 0; }
+
+@media (max-width: 1023px) {
+  .hx-grid--4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .hx-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hx-track .hx-gcard { width: min(34vw, 360px); }
+  .hx-profile { grid-template-columns: 1fr; gap: var(--sp-5); }
+  .hx-profile-text { position: static; }
+  .hx-profile-img { max-width: 520px; }
+  .hx-twin { grid-template-columns: 1fr; gap: var(--sp-5); }
+}
+@media (max-width: 767px) {
+  .hx-grid--4, .hx-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4) var(--sp-2); }
+  .hx-track .hx-gcard { width: 60vw; }
+  .hx-spec > div { grid-template-columns: 1fr; gap: var(--sp-1); }
+  .hx-panel--wide { aspect-ratio: 4 / 3; }
+  .hx-subnav { gap: var(--sp-1) var(--sp-3); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .js .reveal, .js .hx-h1, .js .hx-title, .js .hx-hero-meta, .js .hx-hero-foot, .js .hx-hero-bottom { opacity: 1 !important; animation: none !important; }
   .hx-arrow-down { animation: none; }
