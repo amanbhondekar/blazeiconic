@@ -187,7 +187,7 @@ def hero_html(meta: dict) -> str:
       </div>
     </div>
     <div class="hx-hero-bottom">
-      <span class="hx-label hx-dim">Publisher and PR service</span>
+      <span class="hx-label hx-dim">Fashion agency and media ecosystem</span>
       <span class="hx-label">Scroll <span class="hx-arrow-down" aria-hidden="true">&darr;</span></span>
     </div>
   </div>
