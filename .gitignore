@@ -1,0 +1,9 @@
+# Build output: regenerate with `python build.py`
+public/
+
+# Archived third-party reference, not part of the site
+reference-posture-template/
+
+__pycache__/
+*.pyc
+.claude/settings.local.json

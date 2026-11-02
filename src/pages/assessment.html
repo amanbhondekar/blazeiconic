@@ -1,0 +1,48 @@
+title: Assessment
+description: [Meta description: a short questionnaire that points to a tier or a custom plan.]
+path: /assessment/
+eyebrow: Assessment
+h1: Assessment
+lede: [One sentence: a few questions, then a recommended tier or a custom plan outline.]
+job: Short questionnaire for people not ready to talk.
+action: Submit answers
+needs: Question set and the rules that map answers to a tier.
+---
+<section class="hx-paper">
+  <div class="hx-cols">
+    <div class="hx-cols-head">
+      <p class="hx-label reveal">01 &mdash; Questions</p>
+      <h2 class="hx-display reveal">[Assessment headline]</h2>
+    </div>
+    <form class="hx-form" action="/assessment/result/" method="get">
+      <fieldset class="hx-field">
+        <legend>[Question 1]</legend>
+        <div class="hx-choices">
+          <label class="hx-choice"><input type="radio" name="q1" value="a" required><span>[Answer option]</span></label>
+          <label class="hx-choice"><input type="radio" name="q1" value="b"><span>[Answer option]</span></label>
+          <label class="hx-choice"><input type="radio" name="q1" value="c"><span>[Answer option]</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="hx-field">
+        <legend>[Question 2]</legend>
+        <div class="hx-choices">
+          <label class="hx-choice"><input type="radio" name="q2" value="a" required><span>[Answer option]</span></label>
+          <label class="hx-choice"><input type="radio" name="q2" value="b"><span>[Answer option]</span></label>
+          <label class="hx-choice"><input type="radio" name="q2" value="c"><span>[Answer option]</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="hx-field">
+        <legend>[Question 3]</legend>
+        <div class="hx-choices">
+          <label class="hx-choice"><input type="radio" name="q3" value="a" required><span>[Answer option]</span></label>
+          <label class="hx-choice"><input type="radio" name="q3" value="b"><span>[Answer option]</span></label>
+          <label class="hx-choice"><input type="radio" name="q3" value="c"><span>[Answer option]</span></label>
+        </div>
+      </fieldset>
+      <div class="hx-form-actions">
+        <button class="hx-btn hx-btn--red" type="submit">Submit answers <span class="arrow">&rarr;</span></button>
+        <p class="hx-form-note">[No-guarantee line beside Submit. Wording by counsel.]</p>
+      </div>
+    </form>
+  </div>
+</section>
